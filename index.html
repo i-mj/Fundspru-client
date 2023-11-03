@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SIP Calculator</title>
+	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<style type="text/css">
+		input::placeholder 
+		{
+			text-align: center;
+		}
+		
+		#td1 
+		{
+			border-radius: 7px;
+			background:linear-gradient(white,#f3f3f3);
+			width:300px;
+			height:30px;
+			line-height: 30px;
+			text-align: center;
+			display: inline-block;
+		}
+		input  {
+		    text-align:center;
+		}
+		#td2 
+		{
+			border-radius: 7px;
+			background:linear-gradient(white,#f3f3f3);
+			width:200px;
+			height:30px;
+			line-height: 30px;
+			text-align: center;
+			display: inline-block;
+		}
+		#hd {
+			margin-top: 10px;
+			margin-bottom: 5px;
+		}
+	</style>
+
+</head>
+<body style="background:linear-gradient(white,grey,white);">
+	<!-- header -->
+	<header>
+		<div class="container-fluid">
+			<div class="row" id="hd">
+				<div class="col-md-4" style="">
+					<a href="#"><button class="btn btn-primary">Home</button></a>
+				</div>
+				<div class="col-md-4" style="padding-left:135px;">
+					<img class="img img-responsive" width="100" src="logo.png">
+				</div>
+				<div class="col-md-4 text-right" style="">
+					<a href="#"><button class="btn btn-primary"  onClick="refreshPage()">Refresh</button></a>
+				</div>	
+			</div>
+		</div>
+	</header>
+
+	<div class="container-fluid">
+		<div class="row">
+			<!-- first table  -->
+			<div class="col-md-6 col-xs-12">
+			  <table class="table">
+				  <tr>
+				    <th width="300px">Number of years to Contribute in NPS</th>
+				    <td><input type="text" name="year" placeholder="Ex.25" class="form-control"></td>
+				  </tr>
+				  <tr>
+				    <th>Monthly Contribution from NPS</th>
+				    <td><input type="text" name="npsamount" placeholder="Ex.15000" class="form-control"></td>
+				  </tr>
+				  <tr>
+				  	<th>Monthly Contribution from  <br>( Equity SIP)</th>
+				    <td><input type="text" name="sipamount" placeholder="Ex.20000" class="form-control"></td>
+				  </tr>
+				  <tr>
+				    <th>Investment in NPS increase (%) Every Year </th>
+				    <td><input type="text" name="stepuprate" placeholder="Ex.10 %" class="form-control"></td>
+				  </tr>
+				  <tr>
+				    <th>Ex. Rate of Return from ( NPS )</th>
+				    <td><input type="text" name="npsrate" placeholder="Ex.7 %" class="form-control"></td>
+				  </tr>
+				  <tr>
+				    <th>Ex. Rate of Return from ( Equity SIP )</th>
+				    <td><input type="text" name="siprate" placeholder="Ex.8 %" class="form-control"></td>
+				  </tr>
+				  
+				  <tr>
+				    <th style="">Total Investment Amount = </th>
+				    <td><label id="td1" class="totalInvestmentAmount">Amount</label></td>
+				  </tr>
+				  <tr>
+				    <th>Maturity value = </th>
+				    <td><label id="td1" class="totalMaturityAmount">Amount</label></td>
+				  </tr>
+				  <tr class="text-center">
+				    <td><h5>Free 60% amount at retirement age</h5><label id="td2" class="retirementAmount">Amount</label></td>
+
+				    <td><h5>Annuity Amount 40% Compulsory</h5><label id="td2" class="annuityAmount">Amount</label></td>
+				  </tr>
+				</table>
+					<h2 style="text-align: center;"><input style="border-radius: 15px; margin-bottom: 5px;" type="submit" name="amount" class="btn btn-primary" value="Calculate"></h2>
+			</div>
+			<!-- First table end -->
+
+			<!-- second table start -->
+			<div class="col-md-6">
+				<div class="row">
+						<table class="table">
+							<tr>
+						    <th>Annuity Rate</th>
+						    <td><input type="text" name="annuityrate" placeholder="Ex.4 %" class="form-control"></td>
+						  </tr>
+						  <tr> 
+						    <th>Pension Amount Monthly ( NPS) = </th>
+						    <td><label id="td1" class="pensionAmount">Amount</label></td>
+						  </tr>
+						</table>
+							<h2 style="text-align: center;"><input style="border-radius: 15px;" type="submit" name="annuity" class="btn btn-primary" value="Annuity"></h2>
+				</div>
+				<!-- Second table end -->
+
+				<!-- Third table start -->
+				<div class="row">
+					<table class="table">
+							<tr>
+						    <th>Inflation Rate</th>
+						    <td><input type="text" name="inflationrate" placeholder="Ex.5 %" class="form-control"></td>
+						  </tr>
+						  <tr>
+						    <th>Current Value of Future Monthly Pension = </th>
+						    <td><label id="td1" class="cvpensionAmount">Amount</label></td>
+						  </tr>
+						  <tr>
+						    <th>Current Value of Available Free Corpus (60%) = </th>
+						    <td><label id="td1" class="cvretirementAmount">Amount</label></td>
+						  </tr>
+						</table>
+							<h2 style="text-align: center;"><input style="border-radius: 15px;" type="submit" name="inflation" class="btn btn-primary" value="Inflation"></h2>
+				</div>
+				<br>
+				<hr>
+				<footer>
+					<div class="row">      
+						<div class="col-md-6 text-center">
+			                <p>Reg Office.:  Office No-20,1st Floor,D-Block,Khajanchi Market,K.E.M Road,Bikaner,Rajasthan-334001  <i class="fas fa-phone-volume"></i>+91 946 137 9707 , 0151-2203218</p>
+			            </div>
+			            <div class="col-md-6 text-center">
+	                 	<p >Corp Office.: 302 kshitij near azad nagar metro station ,veera desai road andheri west Mumbai 400058  <i class="fas fa-phone-volume"></i>+91 950 951 4730 , +91 932 010 5139</p>
+	                 </div> 
+					</div>
+				</footer>
+			</div>
+			<!-- row end -->
+		</div>
+	</div>
+	<section class="">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12 text-center">
+							<p class="small-text small-spacing grey">&copy; Altus Wealth Management Pvt. Ltd. ( CIN. U93000RJ2018PTC061176 ) © 2018 All rights reserved</p>
+						</div>
+					</div>
+				</div>
+			</section>
+	<!-- address end -->
+	<script type="text/javascript">
+		String.prototype.replaceAt=function(index, replacement) {
+    		return this.substr(0, index) + replacement+ this.substr(index + replacement.length);
+		}
+
+		$(document).ready(function(){
+			$("input[name=amount]").click(function(){
+				if($("input[name=year]").val()=="" || $("input[name=npsamount]").val()==""  || $("input[name=sipamount]").val()==""  || $("input[name=npsrate]").val()==""  || $("input[name=siprate]").val()==""  || $("input[name=stepuprate]").val()=="")
+				{
+					alert("Enter values");
+					return false;
+				}
+				if($("input[name=inflationrate]").val()!="")
+				{
+					inflationrate=parseInt($("input[name=inflationrate]").val());
+				}
+				else
+				{
+					inflationrate=0;
+				}
+				if($("input[name=annuityrate]").val()!="")
+				{
+					annuityrate=parseInt($("input[name=annuityrate]").val());
+				}
+				else
+				{
+					annuityrate=0;
+				}
+				year=parseInt($("input[name=year]").val());
+				npsamount=parseInt($("input[name=npsamount]").val());
+				sipamount=parseInt($("input[name=sipamount]").val());
+				npsrate=parseInt($("input[name=npsrate]").val());
+				siprate=parseInt($("input[name=siprate]").val());
+				stepuprate=parseInt($("input[name=stepuprate]").val());
+
+
+				$.post("calculatingfile.php",{"year":year,"npsamount":npsamount,"sipamount":sipamount,"npsrate":npsrate,"siprate":siprate,"stepuprate":stepuprate,"annuityrate":annuityrate,"inflationrate":inflationrate},function(data,success){
+					data=data.replaceAt(0," ");
+					data=data.replaceAt(data.length-1," ");
+					data=data.replace(/\\\"/g,'"');
+					data=String(data);
+
+					data1=JSON.parse(data);
+					$(".totalAmount").html(data1.totalamount);
+					$(".averageReturn").html(data1.rate);
+					$(".totalInvestmentAmount").html(data1.totalinvestment);
+					$(".totalMaturityAmount").html(data1.maturityvalue);
+					// $(".pensionAmount").html(data1.pension);
+					$(".retirementAmount").html(data1.retirement);
+					$(".annuityAmount").html(data1.annuity);
+					// $(".cvretirementAmount").html(data1.cvretirement);
+					// $(".cvpensionAmount").html(data1.cvpension);
+				});
+			});
+			$("input[name=inflation]").click(function(){
+				if($("input[name=year]").val()=="" || $("input[name=npsamount]").val()==""  || $("input[name=sipamount]").val()==""  || $("input[name=npsrate]").val()==""  || $("input[name=siprate]").val()==""  || $("input[name=stepuprate]").val()==""  || $("input[name=inflationrate]").val()=="" )
+				{
+					alert("Enter values");
+					return false;
+				}
+				if($("input[name=annuityrate]").val()!="")
+					annuityrate=parseInt($("input[name=annuityrate]").val());
+				else
+					annuityrate=0;
+				year=parseInt($("input[name=year]").val());
+				npsamount=parseInt($("input[name=npsamount]").val());
+				sipamount=parseInt($("input[name=sipamount]").val());
+				npsrate=parseInt($("input[name=npsrate]").val());
+				siprate=parseInt($("input[name=siprate]").val());
+				stepuprate=parseInt($("input[name=stepuprate]").val());
+				inflationrate=parseInt($("input[name=inflationrate]").val());
+
+
+				$.post("calculatingfile.php",{"year":year,"npsamount":npsamount,"sipamount":sipamount,"npsrate":npsrate,"siprate":siprate,"stepuprate":stepuprate,"annuityrate":annuityrate,"inflationrate":inflationrate},function(data,success){
+					data=data.replaceAt(0," ");
+					data=data.replaceAt(data.length-1," ");
+					data=data.replace(/\\\"/g,'"');
+					data=String(data);
+
+					data1=JSON.parse(data);
+					$(".totalAmount").html(data1.totalamount);
+					$(".averageReturn").html(data1.rate);
+					$(".totalInvestmentAmount").html(data1.totalinvestment);
+					$(".totalMaturityAmount").html(data1.maturityvalue);
+					$(".pensionAmount").html(data1.pension);
+					$(".retirementAmount").html(data1.retirement);
+					$(".annuityAmount").html(data1.annuity);
+					$(".cvretirementAmount").html(data1.cvretirement);
+					$(".cvpensionAmount").html(data1.cvpension);
+				});
+			});
+			$("input[name=annuity]").click(function(){
+				if($("input[name=year]").val()=="" || $("input[name=npsamount]").val()==""  || $("input[name=sipamount]").val()==""  || $("input[name=npsrate]").val()==""  || $("input[name=siprate]").val()==""  || $("input[name=stepuprate]").val()==""  || $("input[name=annuityrate]").val()=="")
+				{
+					alert("Enter values");
+					return false;
+				}
+				if($("input[name=inflationrate]").val()!="")
+					inflationrate=parseInt($("input[name=inflationrate]").val());
+				else
+					inflationrate=0;
+				year=parseInt($("input[name=year]").val());
+				npsamount=parseInt($("input[name=npsamount]").val());
+				sipamount=parseInt($("input[name=sipamount]").val());
+				npsrate=parseInt($("input[name=npsrate]").val());
+				siprate=parseInt($("input[name=siprate]").val());
+				stepuprate=parseInt($("input[name=stepuprate]").val());
+				annuityrate=parseInt($("input[name=annuityrate]").val());
+
+
+				$.post("calculatingfile.php",{"year":year,"npsamount":npsamount,"sipamount":sipamount,"npsrate":npsrate,"siprate":siprate,"stepuprate":stepuprate,"annuityrate":annuityrate,"inflationrate":inflationrate},function(data,success){
+					data=data.replaceAt(0," ");
+					data=data.replaceAt(data.length-1," ");
+					data=data.replace(/\\\"/g,'"');
+					data=String(data);
+
+					data1=JSON.parse(data);
+					$(".totalAmount").html(data1.totalamount);
+					$(".averageReturn").html(data1.rate);
+					$(".totalInvestmentAmount").html(data1.totalinvestment);
+					$(".totalMaturityAmount").html(data1.maturityvalue);
+					$(".pensionAmount").html(data1.pension);
+					$(".retirementAmount").html(data1.retirement);
+					$(".annuityAmount").html(data1.annuity);
+					// $(".cvretirementAmount").html(data1.cvretirement);
+					// $(".cvpensionAmount").html(data1.cvpension);
+
+				});
+			});
+		});
+	</script>
+
+<script>
+function refreshPage(){
+    window.location.reload();
+} 
+</script>
+</body>
+</html>
